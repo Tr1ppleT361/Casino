@@ -116,8 +116,8 @@ export const GAMES: GameDefinition[] = [
     tagline: "Klassische Früchte in Neon",
     categories: ["popular", "slots"],
     art: { from: "320 90% 60%", to: "190 95% 55%", glyph: "🍒", pattern: "bubbles" },
-    rtp: 96.2,
-    maxWin: "2.500x",
+    rtp: 95.3,
+    maxWin: "3.420x",
   },
   {
     slug: "golden-vault",
@@ -125,8 +125,8 @@ export const GAMES: GameDefinition[] = [
     tagline: "Knacke den Tresor",
     categories: ["popular", "slots"],
     art: { from: "44 96% 58%", to: "30 90% 42%", glyph: "🔐", pattern: "diamonds" },
-    rtp: 96.5,
-    maxWin: "5.000x",
+    rtp: 95.3,
+    maxWin: "3.420x",
     featured: true,
   },
   {
@@ -135,8 +135,8 @@ export const GAMES: GameDefinition[] = [
     tagline: "Edelsteine aus dem Grid",
     categories: ["slots"],
     art: { from: "190 95% 55%", to: "265 90% 62%", glyph: "💎", pattern: "grid" },
-    rtp: 96.1,
-    maxWin: "3.200x",
+    rtp: 95.3,
+    maxWin: "3.420x",
   },
   {
     slug: "lucky-sevens",
@@ -144,8 +144,8 @@ export const GAMES: GameDefinition[] = [
     tagline: "Retro-Walzen, große Sevens",
     categories: ["slots"],
     art: { from: "356 82% 58%", to: "44 96% 58%", glyph: "7️⃣", pattern: "rays" },
-    rtp: 96.8,
-    maxWin: "1.800x",
+    rtp: 95.3,
+    maxWin: "3.420x",
   },
   {
     slug: "space-riches",
@@ -153,8 +153,8 @@ export const GAMES: GameDefinition[] = [
     tagline: "Reichtum im Orbit",
     categories: ["slots"],
     art: { from: "240 60% 30%", to: "280 90% 60%", glyph: "🛸", pattern: "waves" },
-    rtp: 96.0,
-    maxWin: "4.000x",
+    rtp: 95.3,
+    maxWin: "3.420x",
   },
   {
     slug: "diamond-empire",
@@ -162,8 +162,8 @@ export const GAMES: GameDefinition[] = [
     tagline: "Hochkarätige Walzen",
     categories: ["slots"],
     art: { from: "205 95% 62%", to: "240 60% 30%", glyph: "👑", pattern: "diamonds" },
-    rtp: 96.4,
-    maxWin: "6.000x",
+    rtp: 95.3,
+    maxWin: "3.420x",
   },
 ];
 

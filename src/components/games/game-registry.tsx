@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
+import { SLOT_THEME_BY_SLUG } from "@/lib/slot-themes";
 
 const Loading = () => (
   <div className="mx-auto max-w-7xl space-y-4 px-4 py-6">
@@ -57,7 +58,14 @@ const REGISTRY: Record<string, React.ComponentType> = {
   ),
 };
 
+const SlotMachine = dynamic(
+  () => import("@/components/games/slots/slot-machine").then((m) => m.SlotMachine),
+  { loading: Loading },
+);
+
 export function GameRenderer({ slug }: { slug: string }) {
+  if (SLOT_THEME_BY_SLUG.has(slug)) return <SlotMachine slug={slug} />;
+
   const Game = REGISTRY[slug];
   if (!Game) {
     return (
