@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 24% 5%;
+    --foreground: 220 20% 96%;
+
+    --surface: 240 22% 8%;
+    --surface-raised: 240 20% 11%;
+    --surface-sunken: 240 26% 4%;
+
+    --card: 240 22% 9%;
+    --card-foreground: 220 20% 96%;
+
+    --popover: 240 24% 8%;
+    --popover-foreground: 220 20% 96%;
+
+    --primary: 265 90% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 16% 16%;
+    --secondary-foreground: 220 18% 92%;
+
+    --muted: 240 14% 15%;
+    --muted-foreground: 235 12% 62%;
+
+    --accent: 190 95% 55%;
+    --accent-foreground: 240 30% 6%;
+
+    --destructive: 356 82% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 72% 45%;
+    --success-foreground: 150 60% 6%;
+
+    --warning: 38 95% 58%;
+    --warning-foreground: 30 60% 8%;
+
+    --gold: 44 96% 58%;
+    --gold-foreground: 40 60% 8%;
+
+    --border: 240 16% 18%;
+    --input: 240 16% 16%;
+    --ring: 265 90% 65%;
+
+    --radius: 0.75rem;
+
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+      "Liberation Mono", monospace;
+    --font-display: var(--font-sans);
+  }
+
+  .light {
+    --background: 220 30% 97%;
+    --foreground: 240 30% 10%;
+
+    --surface: 0 0% 100%;
+    --surface-raised: 220 30% 99%;
+    --surface-sunken: 220 24% 94%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 30% 10%;
+
+    --secondary: 220 20% 92%;
+    --secondary-foreground: 240 30% 14%;
+
+    --muted: 220 20% 92%;
+    --muted-foreground: 235 12% 42%;
+
+    --border: 220 18% 86%;
+    --input: 220 18% 88%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+
+  /* Ambient casino backdrop */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        60rem 40rem at 12% -10%,
+        hsl(var(--primary) / 0.16),
+        transparent 60%
+      ),
+      radial-gradient(
+        50rem 34rem at 92% 4%,
+        hsl(var(--accent) / 0.12),
+        transparent 62%
+      ),
+      radial-gradient(
+        44rem 30rem at 50% 108%,
+        hsl(var(--gold) / 0.08),
+        transparent 60%
+      );
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.35);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/[0.06] bg-surface/70 backdrop-blur-xl;
+  }
+
+  .panel {
+    @apply rounded-2xl border border-white/[0.06] bg-card shadow-card;
+  }
+
+  .hairline {
+    @apply border-b border-white/[0.06];
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-accent to-gold bg-clip-text text-transparent;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@layer utilities {
+  .mask-fade-r {
+    mask-image: linear-gradient(to right, black 82%, transparent 100%);
+  }
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--surface-sunken));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+  border: 2px solid hsl(var(--surface-sunken));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Disabled-animations preference (set by settings store) */
+html[data-animations="off"] *,
+html[data-animations="off"] *::before,
+html[data-animations="off"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
