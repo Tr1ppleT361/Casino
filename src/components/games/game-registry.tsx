@@ -43,6 +43,18 @@ const REGISTRY: Record<string, React.ComponentType> = {
     () => import("@/components/games/coinflip-game").then((m) => m.CoinflipGame),
     { loading: Loading },
   ),
+  blackjack: dynamic(
+    () => import("@/components/games/blackjack-game").then((m) => m.BlackjackGame),
+    { loading: Loading },
+  ),
+  roulette: dynamic(
+    () => import("@/components/games/roulette-game").then((m) => m.RouletteGame),
+    { loading: Loading },
+  ),
+  baccarat: dynamic(
+    () => import("@/components/games/baccarat-game").then((m) => m.BaccaratGame),
+    { loading: Loading },
+  ),
 };
 
 export function GameRenderer({ slug }: { slug: string }) {

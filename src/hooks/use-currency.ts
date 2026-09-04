@@ -27,11 +27,24 @@ export function useCurrency() {
     const format = (base: number, options: FormatOptions = {}) =>
       formatAmount(base, currency, { format: numberFormat, ...options });
 
+    /**
+     * Big multipliers produce very long strings (a 10.000 demo-EUR balance is
+     * 1.000.000.000 Coins). Where space is tight we fall back to the compact
+     * notation so nothing gets clipped.
+     */
+    const formatSmart = (base: number, maxChars = 15, options: FormatOptions = {}) => {
+      const full = format(base, { ...options, format: "full" });
+      if (full.length <= maxChars) return full;
+      return format(base, { ...options, format: "compact" });
+    };
+
     return {
       currency,
       numberFormat,
       /** Format a base amount with the currency symbol. */
       format,
+      /** Like `format`, but shortens to compact notation when it gets long. */
+      formatSmart,
       /** Format a base amount without the symbol. */
       formatBare: (base: number, options: FormatOptions = {}) =>
         format(base, { ...options, bare: true }),

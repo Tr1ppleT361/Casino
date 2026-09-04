@@ -47,7 +47,8 @@ export function BetControls({
   extra,
   className,
 }: BetControlsProps) {
-  const { currency, format, toDisplay, toBase, decimals, numberFormat } = useCurrency();
+  const { currency, format, formatSmart, toDisplay, toBase, decimals, numberFormat } =
+    useCurrency();
   const balance = useCasino((state) => state.balance);
   const hydrated = useHydrated();
   const [text, setText] = useState(() => formatNumber(toDisplay(bet), decimals, "full"));
@@ -136,10 +137,10 @@ export function BetControls({
       {extra}
 
       <dl className="grid grid-cols-2 gap-2 rounded-xl border border-white/[0.06] bg-surface-sunken/70 p-3 text-xs">
-        <Readout label="Bet Amount" value={format(bet)} />
+        <Readout label="Bet Amount" value={formatSmart(bet)} />
         <Readout
           label="Potential Win"
-          value={win !== undefined ? format(win) : "—"}
+          value={win !== undefined ? formatSmart(win) : "—"}
           tone="success"
         />
         <Readout
@@ -149,7 +150,7 @@ export function BetControls({
         />
         <Readout
           label="Balance"
-          value={hydrated ? format(balance) : format(0)}
+          value={hydrated ? formatSmart(balance) : formatSmart(0)}
           icon={<Wallet className="h-3 w-3" />}
         />
       </dl>
@@ -182,6 +183,7 @@ function Readout({
         {label}
       </dt>
       <dd
+        title={value}
         className={cn(
           "tabular mt-0.5 truncate text-sm font-black",
           tone === "success" && "text-success",

@@ -13,7 +13,7 @@ import { GAMES } from "@/lib/games";
 export function Hero() {
   const balance = useCasino((state) => state.balance);
   const hydrated = useHydrated();
-  const { format, currency } = useCurrency();
+  const { format, formatSmart, currency } = useCurrency();
 
   return (
     <section className="relative overflow-hidden rounded-3xl border border-white/[0.07] bg-gradient-to-br from-primary/[0.16] via-surface to-accent/[0.1] p-6 sm:p-10">
@@ -83,7 +83,9 @@ export function Hero() {
         >
           <Stat
             label="Demo-Guthaben"
-            value={hydrated ? format(balance) : format(STARTING_BALANCE)}
+            value={
+              hydrated ? formatSmart(balance, 16) : formatSmart(STARTING_BALANCE, 16)
+            }
           />
           <Stat label="Währung" value={currency.name} />
           <Stat label="Spiele" value={`${GAMES.length}`} />

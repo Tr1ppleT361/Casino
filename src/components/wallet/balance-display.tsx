@@ -17,7 +17,7 @@ export function BalanceDisplay({
 }) {
   const balance = useCasino((state) => state.balance);
   const hydrated = useHydrated();
-  const { format, currency } = useCurrency();
+  const { format, formatSmart, currency } = useCurrency();
 
   return (
     <Link
@@ -40,9 +40,13 @@ export function BalanceDisplay({
           )}
         >
           {hydrated ? (
-            <CountUp value={balance} format={(value) => format(value)} duration={600} />
+            <CountUp
+              value={balance}
+              format={(value) => formatSmart(value, 17)}
+              duration={600}
+            />
           ) : (
-            format(0)
+            formatSmart(0)
           )}
         </span>
       </span>
